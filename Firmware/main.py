@@ -1,33 +1,40 @@
 from kmk.kmk_keyboard import KMKKeyboard
 from kmk.keys import KC
-from kmk.handlers.sequences import send_string
 from kmk.modules.layers import Layers
+from kmk.modules.tapdance import TapDance
 
 keyboard = KMKKeyboard()
 keyboard.modules.append(Layers())
+keyboard.modules.append(TapDance())
 
-# GP0 = Sleep
-# GP1 = Screenshot
-# GP2 = Clipboard
-# GP3 = Undo/Redo
-# GP4 = App Switch
-# GP7 = Quit
+# TapDance keys
+screenshot_td = KC.TD(
+    KC.LGUI(KC.LSFT(KC.N4)),  # Tap → Cmd+Shift+4
+    KC.LGUI(KC.LSFT(KC.N3))   # Hold → Cmd+Shift+3
+)
 
-keyboard_pins = {
-    "GP1": KC.TSFT4,
-    "GP1_hold": KC.TSFT3,
-    "GP2": KC.LGUI(KC.C),
-    "GP4": KC.LGUI(KC.TAB),
-    "GP3": KC.LGUI(KC.Z),
-    "GP3_hold": KC.LGUI(KC.LSFT(KC.Z)),
-    "GP0": KC.LGUI(KC.F9),
-    "GP7": KC.LGUI(KC.Q),
+undo_redo_td = KC.TD(
+    KC.LGUI(KC.Z),            # Tap → Undo
+    KC.LGUI(KC.LSFT(KC.Z))    # Hold → Redo
+)
+
+keyboard.pins = {
+    "GP27": screenshot_td,     # Screenshot
+    "GP2": KC.LGUI(KC.C),      # Clipboard
+    "GP4": KC.LGUI(KC.TAB),    # App switch
+    "GP3": undo_redo_td,       # Undo / Redo
+    "GP26": KC.LGUI(KC.F9),    # Sleep
+    "GP7": KC.LGUI(KC.Q),      # Quit
 }
 
-keyboard_layer = [
+keyboard.keymap = [
     [
-        KC.TSFT4, KC.LGUI(KC.C), KC.LGUI(KC.TAB),
-        KC.LGUI(KC.Z), KC.LGUI(KC.F9), KC.LGUI(KC.Q)
+        screenshot_td,
+        KC.LGUI(KC.C),
+        KC.LGUI(KC.TAB),
+        undo_redo_td,
+        KC.LGUI(KC.F9),
+        KC.LGUI(KC.Q),
     ]
 ]
 
