@@ -9,7 +9,7 @@ A compact 6-key macropad designed for macOS users, optimized for students. Featu
 ### Overall Macropad
 The overall part has a top case and a bottom case that fit together using screws (US 6# Screw).
 It contains a PCB with the required components that sits on the bottom base, and the CherryMX keys stick out from the top base for access.
-![Overall Macropad](assets/Final.png)
+![Overall Macropad](assets/Final.jpg)
 Made using Autodesk Fusion!
 
 ### Schematic
